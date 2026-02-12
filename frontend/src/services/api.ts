@@ -1,9 +1,15 @@
 import axios from 'axios'
 import type { TripFormData, TripPlanResponse } from '@/types'
 
-// 使用相对路径，让请求通过 Vite 代理
+// 根据环境配置 API 基础 URL
+// 本地开发：使用相对路径，通过 Vite 代理
+// 生产环境：使用环境变量配置的后端地址
+const API_BASE_URL = import.meta.env.PROD 
+  ? import.meta.env.VITE_API_BASE_URL || '/' 
+  : '/'
+
 const apiClient = axios.create({
-  baseURL: '/',
+  baseURL: API_BASE_URL,
   timeout: 120000, // 2分钟超时
   headers: {
     'Content-Type': 'application/json'

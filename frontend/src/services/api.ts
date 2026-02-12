@@ -1,10 +1,9 @@
 import axios from 'axios'
 import type { TripFormData, TripPlanResponse } from '@/types'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
-
+// 使用相对路径，让请求通过 Vite 代理
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: '/',
   timeout: 120000, // 2分钟超时
   headers: {
     'Content-Type': 'application/json'
